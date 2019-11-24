@@ -1,0 +1,18 @@
+.building {
+  text-align: center;
+  margin: auto;
+  padding-top: 3rem;
+}
+
+.image {
+  width: 40vw;
+  margin: auto;
+}
+
+.city {
+  font-weight: bold;
+}
+
+.emptyPeriod {
+  font-size: 1rem;
+}
