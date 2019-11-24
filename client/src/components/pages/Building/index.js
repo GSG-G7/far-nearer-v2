@@ -10,9 +10,9 @@ import styles from './building.module.css';
 const Building = props => {
   const {
     match: {
-      params: { id },
+      params: { id }
     },
-    history: { push },
+    history: { push }
   } = props;
 
   return (
@@ -35,7 +35,7 @@ const Building = props => {
             location,
             owner,
             previousUse,
-            thumbnail,
+            thumbnail
           } = found;
           return (
             <div>
@@ -78,16 +78,16 @@ const Building = props => {
 
                     <h2 className={styles.title}>previous Use </h2>
                     <p className={styles.description}>{previousUse}</p>
-                  </div>
-
-                  <div className={styles.right__side}>
-                    <h2 className={styles.title}>Other information </h2>
-                    <p className={styles.description}>{extraInfo}</p>
 
                     <h2 className={styles.title}>
                       Empty Since{' '}
                       <span className={styles.description}>{emptyPeriod}</span>
                     </h2>
+                  </div>
+
+                  <div className={styles.right__side}>
+                    <h2 className={styles.title}>Other information </h2>
+                    <p className={styles.description}>{extraInfo}</p>
                   </div>
                 </div>
               </div>
@@ -103,12 +103,12 @@ const Building = props => {
 Building.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    }).isRequired,
+      id: PropTypes.string.isRequired
+    }).isRequired
   }).isRequired,
   history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }).isRequired,
+    push: PropTypes.func.isRequired
+  }).isRequired
 };
 
 export default Building;

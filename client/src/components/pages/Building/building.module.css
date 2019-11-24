@@ -12,6 +12,12 @@
   margin: 0 10%;
 }
 
+.right__side,
+.left__side {
+  width: 30%;
+  margin-top: 3rem;
+}
+
 .image {
   width: 40vw;
   margin: auto;
