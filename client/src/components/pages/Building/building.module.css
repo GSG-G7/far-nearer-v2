@@ -2,11 +2,14 @@
   text-align: center;
   margin: auto;
   padding-top: 3rem;
+  display: table;
 }
 
 .content {
   text-align: left;
-  margin-top: 2rem;
+  display: flex;
+  justify-content: space-around;
+  margin: 0 10%;
 }
 
 .image {
@@ -22,6 +25,7 @@
 .location {
   text-align: center;
   font-size: 1rem;
+  margin-top: 2rem;
   color: var(--main-black);
 }
 
@@ -36,9 +40,24 @@
 }
 
 .title {
-  font-family: 'Nexa bold';
+  font-family: 'Nexa';
+  font-weight: bold;
 }
 
 .description {
-  font-size: 2rem;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .title {
+    font-size: 4rem;
+  }
+
+  .description {
+    font-size: 4rem;
+  }
 }

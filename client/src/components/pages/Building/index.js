@@ -48,44 +48,47 @@ const Building = props => {
                   alt={city}
                   className={styles.image}
                 />
-
+                <h3 className={styles.location}>
+                  <span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 23 23"
+                    >
+                      <path d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z" />
+                    </svg>
+                  </span>
+                  {location}
+                  {knownAddress !== 'N/A' ? (
+                    <p className={styles.knownAddress}>{knownAddress}</p>
+                  ) : null}
+                </h3>
                 <div className={styles.content}>
-                  <h3 className={styles.location}>
-                    <span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="25"
-                        height="25"
-                        viewBox="0 0 23 23"
-                      >
-                        <path d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z" />
-                      </svg>
-                    </span>
-                    {location}
-                    {knownAddress !== 'N/A' ? (
-                      <p className={styles.knownAddress}>{knownAddress}</p>
-                    ) : null}
-                  </h3>
+                  <div className={styles.left__side}>
+                    <h2 className={styles.title}>Owner</h2>
+                    <p className={styles.description}>
+                      {owner}{' '}
+                      {isOwnerLocal.toLowerCase() === 'yes' ? (
+                        <Tag className={styles.ownerLocal__active}>
+                          Local Owner
+                        </Tag>
+                      ) : null}
+                    </p>
 
-                  <h1 className={styles.title}>Owner</h1>
-                  <p className={styles.description}>
-                    {owner}{' '}
-                    {isOwnerLocal.toLowerCase() === 'yes' ? (
-                      <Tag className={styles.ownerLocal__active}>
-                        Local Owner
-                      </Tag>
-                    ) : null}
-                  </p>
+                    <h2 className={styles.title}>previous Use </h2>
+                    <p className={styles.description}>{previousUse}</p>
+                  </div>
 
-                  <h1 className={styles.title}>previous Use </h1>
-                  <p className={styles.description}>{previousUse}</p>
+                  <div className={styles.right__side}>
+                    <h2 className={styles.title}>Other information </h2>
+                    <p className={styles.description}>{extraInfo}</p>
 
-                  <h1 className={styles.title}>Other information </h1>
-                  <p className={styles.description}>{extraInfo}</p>
-
-                  <h1 className={styles.title}>
-                    Empty Since <span>{emptyPeriod}</span>
-                  </h1>
+                    <h2 className={styles.title}>
+                      Empty Since{' '}
+                      <span className={styles.description}>{emptyPeriod}</span>
+                    </h2>
+                  </div>
                 </div>
               </div>
             </div>
