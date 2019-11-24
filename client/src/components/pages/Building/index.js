@@ -61,7 +61,7 @@ const Building = props => {
             </div>
           );
         }
-        push('/404');
+        return push('/404');
       }}
     </buildingContext.Consumer>
   );
