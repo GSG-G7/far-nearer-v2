@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Tag } from 'antd';
 
 import { Navbar, Loading } from 'components/utils';
 import buildingContext from 'contexts/buildingContext';
@@ -39,24 +40,53 @@ const Building = props => {
           return (
             <div>
               <Navbar />
-              <div className={styles.building}>
+              <div className={`container ${styles.building}`}>
+                <h1 className={styles.city}>{city}</h1>
+
                 <img
                   src={`/${thumbnail}`}
                   alt={city}
                   className={styles.image}
                 />
-                <h1 className={styles.city}>
-                  {city}{' '}
-                  <span className={styles.emptyPeriod}>
-                    Empty since: {emptyPeriod}
-                  </span>
-                </h1>
-                <h1>Location: {location}</h1>
-                {knownAddress !== 'N/A' ? <span>{knownAddress}</span> : ''}
-                <h1>Owner: {owner}</h1>
-                {isOwnerLocal !== 'N/A' ? <span>{isOwnerLocal}</span> : ''}
-                <h1>previous Use: {previousUse}</h1>
-                <h1>Other information: {extraInfo}</h1>
+
+                <div className={styles.content}>
+                  <h3 className={styles.location}>
+                    <span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="25"
+                        height="25"
+                        viewBox="0 0 23 23"
+                      >
+                        <path d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z" />
+                      </svg>
+                    </span>
+                    {location}
+                    {knownAddress !== 'N/A' ? (
+                      <p className={styles.knownAddress}>{knownAddress}</p>
+                    ) : null}
+                  </h3>
+
+                  <h1 className={styles.title}>Owner</h1>
+                  <p className={styles.description}>
+                    {owner}{' '}
+                    {isOwnerLocal.toLowerCase() === 'yes' ? (
+                      <Tag className={styles.ownerLocal__active}>
+                        Local Owner
+                      </Tag>
+                    ) : null}
+                  </p>
+
+                  <h1 className={styles.title}>previous Use </h1>
+                  <p className={styles.description}>{previousUse}</p>
+
+                  <h1 className={styles.title}>Other information </h1>
+                  <p className={styles.description}>{extraInfo}</p>
+
+                  <h1 className={styles.title}>
+                    Empty Since <span>{emptyPeriod}</span>
+                  </h1>
+                </div>
               </div>
             </div>
           );

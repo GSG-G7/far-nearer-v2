@@ -4,15 +4,41 @@
   padding-top: 3rem;
 }
 
+.content {
+  text-align: left;
+  margin-top: 2rem;
+}
+
 .image {
   width: 40vw;
   margin: auto;
 }
 
 .city {
-  font-weight: bold;
+  text-align: left;
+  font-family: 'Nexa bold';
 }
 
-.emptyPeriod {
+.location {
+  text-align: center;
   font-size: 1rem;
+  color: var(--main-black);
+}
+
+.knownAddress {
+  color: #555555;
+}
+
+.ownerLocal__active {
+  background: var(--main-color--light);
+  color: var(--main-white);
+  padding: 0.2rem 0.5rem;
+}
+
+.title {
+  font-family: 'Nexa bold';
+}
+
+.description {
+  font-size: 2rem;
 }
