@@ -30,7 +30,7 @@ const buildMarkers = buildingInfo => {
       <Marker position={position} key={id}>
         <Popup>
           <img
-            src={thumbnail}
+            src={`https://res.cloudinary.com/duzdjvsfs/image/upload/v1574616761/${thumbnail}`}
             alt="building"
             className={styles.building__img}
           />
