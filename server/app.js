@@ -3,7 +3,7 @@ const { join } = require('path');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
 const morgan = require('morgan');
-const fileupload = require('express-fileupload');
+const formData = require('express-form-data');
 const helmet = require('helmet');
 
 const controllers = require('./controllers');
@@ -18,7 +18,7 @@ app.use(helmet());
 app.use(express.json());
 app.use(compression());
 app.use(cookieParser());
-app.use(fileupload());
+app.use(formData.parse());
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
