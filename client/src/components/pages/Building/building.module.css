@@ -47,6 +47,12 @@
   font-size: 1.5rem;
 }
 
+.map {
+  width: 70vw;
+  height: auto;
+  margin: 3rem auto;
+}
+
 @media (max-width: 600px) {
   .building {
     flex-direction: column;

@@ -4,7 +4,7 @@ import { Tag } from 'antd';
 
 import { Navbar, Loading } from 'components/utils';
 import buildingContext from 'contexts/buildingContext';
-
+import MapComponent from 'components/pages/ViewBuildings/Map';
 import styles from './building.module.css';
 
 const Building = props => {
@@ -30,6 +30,8 @@ const Building = props => {
         const found = buildingInfo.find(building => {
           return id === building.id;
         });
+        const buildingArray = [];
+        buildingArray[0] = found;
         if (found) {
           const {
             city,
@@ -93,6 +95,9 @@ const Building = props => {
                     <span className={styles.description}>{emptyPeriod}</span>
                   </h2>
                 </div>
+              </div>
+              <div className={styles.map}>
+                <MapComponent buildingInfo={buildingArray} view="oneBuilding" />
               </div>
             </div>
           );
