@@ -1,8 +1,6 @@
-const { promisify } = require('util');
-const { join } = require('path');
-
 const { reportBuilding, get } = require('../../models/queries/emptyBuildings');
 const { buildingSchema } = require('../../validation');
+const upload = require('../../utils/upload.js');
 
 const postEmptyBuilding = async (req, res, next) => {
   const { data } = req.body;
@@ -26,10 +24,8 @@ const postEmptyBuilding = async (req, res, next) => {
     } else {
       if (req.files && req.files.thumbnail) {
         const { thumbnail } = req.files;
-        const fileName = `${Date.now()}${thumbnail.name}`;
-        const move = promisify(thumbnail.mv);
-        await move(join(__dirname, '..', '..', 'uploads', fileName));
-        newBuild.thumbnail = fileName;
+        const { public_id: publicId, format } = await upload(thumbnail.path);
+        newBuild.thumbnail = `${publicId}.${format}`;
       }
 
       await reportBuilding(newBuild);
