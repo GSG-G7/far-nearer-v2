@@ -2,20 +2,13 @@
   text-align: center;
   margin: auto;
   padding-top: 3rem;
-  display: table;
+  display: flex;
 }
 
 .content {
   text-align: left;
-  display: flex;
-  justify-content: space-around;
-  margin: 0 10%;
-}
-
-.right__side,
-.left__side {
-  width: 30%;
-  margin-top: 3rem;
+  width: 50%;
+  margin: 5%;
 }
 
 .image {
@@ -65,5 +58,10 @@
 
   .description {
     font-size: 4rem;
+  }
+
+  .right__side,
+  .left__side {
+    width: 100%;
   }
 }
