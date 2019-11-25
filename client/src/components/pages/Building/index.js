@@ -20,7 +20,12 @@ const Building = props => {
       {context => {
         const { buildingInfo, loading } = context;
         if (loading) {
-          return <Loading />;
+          return (
+            <div>
+              <Navbar />
+              <Loading />
+            </div>
+          );
         }
         const found = buildingInfo.find(building => {
           return id === building.id;
@@ -45,7 +50,7 @@ const Building = props => {
                   <h1 className={styles.city}>{city}</h1>
 
                   <img
-                    src={`/${thumbnail}`}
+                    src={`https://res.cloudinary.com/duzdjvsfs/image/upload/v1574616761/${thumbnail}`}
                     alt={city}
                     className={styles.image}
                   />
