@@ -48,7 +48,7 @@
 }
 
 @media (max-width: 600px) {
-  .content {
+  .building {
     flex-direction: column;
   }
 
