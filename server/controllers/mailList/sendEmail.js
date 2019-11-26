@@ -22,4 +22,5 @@ const sendEmail = async email => {
   };
   transport.sendMail(mailOption);
 };
+
 module.exports = { sendEmail };
