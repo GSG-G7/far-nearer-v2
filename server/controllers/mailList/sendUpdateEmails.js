@@ -8,19 +8,18 @@ const {
   mailList: { getEmails },
 } = require('../../models/queries/');
 
-module.exports = async () => {
-  const allEmails = await getEmails();
-  const transport = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.EMAIL,
-      pass: process.env.PASSWORD,
-    },
-  });
+module.exports = () => {
+  cron.schedule('* * * * *', async () => {
+    const allEmails = await getEmails();
+    const transport = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD,
+      },
+    });
 
-  const html = readFileSync(join(__dirname, 'template', 'updateEmail.html'));
-
-  cron.schedule('0 23 * * *', () => {
+    const html = readFileSync(join(__dirname, 'template', 'updateEmail.html'));
     allEmails.forEach(email => {
       const mailOption = {
         from: process.env.EMAIL,
