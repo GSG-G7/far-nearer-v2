@@ -34,7 +34,7 @@ app.use((_req, res) => {
   res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
 });
 
-sendUpdateEmails();
+sendUpdateEmails.start();
 
 app.use(errorHandle);
 
