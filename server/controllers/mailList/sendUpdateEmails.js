@@ -9,7 +9,7 @@ const {
 } = require('../../models/queries/');
 
 module.exports = () => {
-  cron.schedule('* * * * *', async () => {
+  cron.schedule('0 23 * * *', async () => {
     const allEmails = await getEmails();
     const transport = nodemailer.createTransport({
       service: 'gmail',
