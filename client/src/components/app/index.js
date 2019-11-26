@@ -37,7 +37,10 @@ class App extends Component {
         this.setState({ buildingInfo: data, loading: false });
       else this.setState({ loading: false });
     } catch (err) {
-      openNotificationWithIcon('error', 'Something went wrong !! Try again');
+      openNotificationWithIcon(
+        'error',
+        'Something went wrong! Please try again',
+      );
     }
   }
 
