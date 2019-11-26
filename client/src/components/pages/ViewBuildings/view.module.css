@@ -56,6 +56,7 @@
 
 .table {
   margin-top: 3rem;
+  cursor: pointer;
 }
 
 @media (max-width: 600px) {

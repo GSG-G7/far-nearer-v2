@@ -1,61 +1,48 @@
-import React, { Component, lazy, Suspense } from 'react';
-import axios from 'axios';
-import { notification } from 'antd';
+import React, { lazy, Suspense } from 'react';
+import PropTypes from 'prop-types';
 
 import { Navbar, Loading } from 'components/utils';
+import buildingContext from 'contexts/buildingContext';
 
 import styles from './view.module.css';
 
 const MapComponent = lazy(() => import('./Map'));
 const TableInfo = lazy(() => import('./Table'));
 
-class viewBuildings extends Component {
-  state = { buildingInfo: [] };
+const viewBuildings = ({ history: { push } }) => {
+  return (
+    <buildingContext.Consumer>
+      {context => {
+        const { buildingInfo } = context;
+        return (
+          <>
+            <Navbar />
+            <div className="container" id="view">
+              <div className={styles.view}>
+                <h1 className={styles.heading}>View Buildings</h1>
+                <p className={styles.content}>
+                  These buildings have been reported as empty or at risk by the
+                  community. Some may be in the process of verification.
+                </p>
+              </div>
+              <Suspense fallback={<Loading />}>
+                <MapComponent buildingInfo={buildingInfo} />
+              </Suspense>
+              <div className={styles.table}>
+                <Suspense fallback={<Loading />}>
+                  <TableInfo buildingInfo={buildingInfo} redirect={push} />
+                </Suspense>
+              </div>
+            </div>
+          </>
+        );
+      }}
+    </buildingContext.Consumer>
+  );
+};
 
-  async componentDidMount() {
-    const openNotificationWithIcon = (type, message) => {
-      notification[type]({
-        message,
-        duration: 2,
-      });
-    };
-    try {
-      const {
-        data: { data },
-      } = await axios.get('/api/v1/empty-buildings');
-
-      if (data && data[0] && data[0].latitude && data[0].longitude)
-        this.setState({ buildingInfo: data });
-    } catch (err) {
-      openNotificationWithIcon('error', 'Something went wrong !! Try again');
-    }
-  }
-
-  render() {
-    const { buildingInfo } = this.state;
-    return (
-      <>
-        <Navbar />
-        <div className="container" id="view">
-          <div className={styles.view}>
-            <h1 className={styles.heading}>View Buildings</h1>
-            <p className={styles.content}>
-              These buildings have been reported as empty or at risk by the
-              community. Some may be in the process of verification.
-            </p>
-          </div>
-          <Suspense fallback={<Loading />}>
-            <MapComponent buildingInfo={buildingInfo} />
-          </Suspense>
-          <div className={styles.table}>
-            <Suspense fallback={<Loading />}>
-              <TableInfo buildingInfo={buildingInfo} />
-            </Suspense>
-          </div>
-        </div>
-      </>
-    );
-  }
-}
+viewBuildings.propTypes = {
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
+};
 
 export default viewBuildings;

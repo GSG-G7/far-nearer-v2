@@ -1,0 +1,73 @@
+.building {
+  text-align: center;
+  margin: auto;
+  padding-top: 3rem;
+  display: flex;
+}
+
+.content {
+  text-align: left;
+  width: 50%;
+  margin: 5%;
+}
+
+.image {
+  width: 40vw;
+  margin: auto;
+}
+
+.city {
+  text-align: left;
+  font-family: 'Nexa bold';
+}
+
+.location {
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 2rem;
+  color: var(--main-black);
+}
+
+.knownAddress {
+  color: #555555;
+}
+
+.ownerLocal__active {
+  background: var(--main-color--light);
+  color: var(--main-white);
+  padding: 0.2rem 0.5rem;
+}
+
+.title {
+  font-family: 'Nexa';
+  font-weight: bold;
+}
+
+.description {
+  font-size: 1.5rem;
+}
+
+.map {
+  width: 70vw;
+  height: auto;
+  margin: 3rem auto;
+}
+
+@media (max-width: 600px) {
+  .building {
+    flex-direction: column;
+  }
+
+  .title {
+    font-size: 4rem;
+  }
+
+  .description {
+    font-size: 4rem;
+  }
+
+  .right__side,
+  .left__side {
+    width: 100%;
+  }
+}

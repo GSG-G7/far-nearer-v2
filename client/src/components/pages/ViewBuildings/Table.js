@@ -23,7 +23,7 @@ class TableInfo extends Component {
 
   render() {
     const { filteredInfo = {}, scrollVisable } = this.state;
-    const { buildingInfo } = this.props;
+    const { buildingInfo, redirect } = this.props;
     const columns = [
       {
         title: 'Location',
@@ -89,6 +89,12 @@ class TableInfo extends Component {
         onChange={this.handleChange}
         rowKey={record => record.id}
         scroll={scrollVisable ? { x: 700 } : false}
+        onRow={record => ({
+          onClick: () => {
+            const { id } = record;
+            redirect(`/view-buildings/${id}`);
+          },
+        })}
       />
     );
   }
@@ -96,5 +102,6 @@ class TableInfo extends Component {
 
 TableInfo.propTypes = {
   buildingInfo: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  redirect: PropTypes.func.isRequired,
 };
 export default TableInfo;
