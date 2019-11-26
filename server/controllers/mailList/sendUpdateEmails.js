@@ -10,7 +10,7 @@ const {
 } = require('../../models/queries/');
 
 module.exports = cron.schedule(
-  '*/1 * * * *',
+  '0 23 * * *',
   async () => {
     try {
       const allEmails = await getEmails();
