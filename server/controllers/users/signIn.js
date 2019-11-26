@@ -7,19 +7,18 @@ const {
 const { signInSchema } = require('../../validation/');
 
 module.exports = async (req, res, next) => {
-  const { email, password } = req.body;
   const key = process.env.KEY;
   try {
-    const newUser = await signInSchema.validate(
-      { email, password },
-      {
-        abortEarly: false,
-      },
-    );
+    const { email, password } = await signInSchema.validate(req.body, {
+      abortEarly: false,
+    });
     const users = await getUsers();
     const isExist = users.find(async user => {
-      const correctPassword = await compare(newUser.password, user.password);
-      return newUser.email === user.email && correctPassword;
+      if (email === user.email) {
+        const correctPassword = await compare(password, user.password);
+        return correctPassword;
+      }
+      return false;
     });
     if (isExist) {
       const token = sign({ userInfo: { email, password } }, key);
