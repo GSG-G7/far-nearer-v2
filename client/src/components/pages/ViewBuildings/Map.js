@@ -85,18 +85,47 @@ const buildMarkers = buildingInfo => {
   return markers;
 };
 
-const MapComponent = ({ buildingInfo }) => {
+const MapComponent = ({ buildingInfo, view }) => {
+  let center = [51.509865, -0.118092];
+  let zoom = 6;
+  let maxBounds = [
+    { lat: 56.25501647203477, lng: -16.853027343750004 },
+    { lat: 49.83994655735523, lng: -17.072753906250004 },
+    { lat: 49.85410987531622, lng: 10.458984375000002 },
+    { lat: 56.30379004315596, lng: 10.72265625 },
+  ];
+  if (view === 'oneBuilding') {
+    switch (buildingInfo[0].city) {
+      case 'Morecambe':
+        center = [54.06933, -2.8631401];
+        zoom = 14;
+        maxBounds = [
+          { lat: 54.07923285658608, lng: -2.835073471069336 },
+          { lat: 54.07923285658608, lng: -2.8912067413330083 },
+          { lat: 54.059427160261045, lng: -2.835073471069336 },
+          { lat: 54.059427160261045, lng: -2.8912067413330083 },
+        ];
+        break;
+      case 'Hastings':
+        center = [50.868607, 0.581760405];
+        zoom = 13;
+        maxBounds = [
+          { lat: 50.89178215788768, lng: 0.6509399414062501 },
+          { lat: 50.89178215788768, lng: 0.5125808715820314 },
+          { lat: 50.84543191993169, lng: 0.6509399414062501 },
+          { lat: 50.84543191993169, lng: 0.5125808715820314 },
+        ];
+        break;
+      default:
+        break;
+    }
+  }
   return (
     <Map
-      center={[51.509865, -0.118092]}
-      zoom={6}
+      center={center}
+      zoom={zoom}
       className={styles.map}
-      maxBounds={[
-        { lat: 56.25501647203477, lng: -16.853027343750004 },
-        { lat: 49.83994655735523, lng: -17.072753906250004 },
-        { lat: 49.85410987531622, lng: 10.458984375000002 },
-        { lat: 56.30379004315596, lng: 10.72265625 },
-      ]}
+      maxBounds={maxBounds}
     >
       <TileLayer
         url="https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}"
@@ -110,6 +139,7 @@ const MapComponent = ({ buildingInfo }) => {
 
 MapComponent.propTypes = {
   buildingInfo: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  view: PropTypes.string.isRequired,
 };
 
 export default MapComponent;
