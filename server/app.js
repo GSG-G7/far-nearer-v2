@@ -8,6 +8,7 @@ const helmet = require('helmet');
 
 const controllers = require('./controllers');
 const errorHandle = require('./controllers/middleware');
+const sendUpdateEmails = require('./controllers/mailList/sendUpdateEmails');
 
 const app = express();
 
@@ -32,6 +33,8 @@ app.use('/api/v1/', controllers);
 app.use((_req, res) => {
   res.sendFile(join(__dirname, '..', 'client', 'build', 'index.html'));
 });
+
+sendUpdateEmails();
 
 app.use(errorHandle);
 
