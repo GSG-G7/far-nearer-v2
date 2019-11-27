@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Form, Icon, Input, Button } from 'antd';
 
-import logo from 'assets/FNLogodarkV2.png';
 import { Navbar } from 'components/utils';
 import styles from './signIn.module.css';
 
@@ -15,7 +14,7 @@ class SignInForm extends Component {
     e.preventDefault();
     validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        // console.log('Received values of form: ', values);
       }
     });
   };
