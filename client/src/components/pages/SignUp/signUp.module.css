@@ -1,0 +1,36 @@
+.signUp {
+  margin: 5% 35%;
+}
+
+.heading {
+  text-align: center;
+  color: var(--main-color--light);
+  font-weight: bold;
+}
+.signUpBtn{
+  text-align: center;
+}
+.hasAccount{
+  text-align: center;
+  color: var(--main-black);
+  font-family: 'roboto';
+}
+.signin {
+  display: inline;
+  font-size: 1.2rem;
+  color: var(--main-color--light);
+}
+
+@media (max-width: 600px) {
+  .signUp {
+    margin: 20% 10%;
+  }
+  
+  .heading {
+    margin-bottom: 10rem;
+  }
+
+  .signin{
+    font-size: 4rem;
+  }
+}
