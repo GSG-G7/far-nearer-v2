@@ -1,6 +1,6 @@
 const base = require('../config');
 
-exports.getUsers = async email => {
+exports.getUserByEmail = async email => {
   let records = [];
 
   const processPage = (partialRecords, fetchNextPage) => {
@@ -21,5 +21,9 @@ exports.getUsers = async email => {
     })
     .eachPage(processPage);
 
-  return records;
+  return records[0];
+};
+
+exports.getUserById = id => {
+  return base('users').find(id);
 };

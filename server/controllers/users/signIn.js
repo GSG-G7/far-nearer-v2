@@ -1,7 +1,7 @@
 const { compare } = require('bcrypt');
 const { sign } = require('jsonwebtoken');
 const {
-  users: { getUsers },
+  users: { getUserByEmail },
 } = require('../../models/queries');
 
 const { signInSchema } = require('../../validation/');
@@ -13,20 +13,18 @@ module.exports = async (req, res, next) => {
       abortEarly: false,
     });
 
-    const users = await getUsers(email);
-    const isExist = users.find(async user => {
+    const user = await getUserByEmail(email);
+    if (user) {
       const correctPassword = await compare(password, user.password);
-      return correctPassword;
-    });
-    if (isExist) {
-      const token = sign({ userInfo: isExist.id }, key);
-      res.cookie('token', token, { maxAge: 8400000, httpOnly: true });
-      res.json({ statusCode: 200 });
+      if (correctPassword) {
+        const token = sign({ userInfo: user.id }, key);
+        res.cookie('token', token, { maxAge: 8400000, httpOnly: true });
+        res.json({ statusCode: 200 });
+      } else {
+        res.send({ statusCode: 401, error: 'Invalid Credintials' });
+      }
     } else {
-      res.send({
-        statusCode: 400,
-        error: 'Invalid Credintials',
-      });
+      res.send({ statusCode: 401, error: 'Invalid Credintials' });
     }
   } catch (error) {
     if (error.name === 'ValidationError')
