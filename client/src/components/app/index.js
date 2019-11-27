@@ -14,6 +14,7 @@ import Home from 'components/pages/Home';
 import Building from 'components/pages/Building';
 
 import buildingContext from 'contexts/buildingContext';
+import SignUp from 'components/pages/SignUp';
 
 class App extends Component {
   state = {
@@ -49,6 +50,7 @@ class App extends Component {
       <buildingContext.Provider value={{ ...this.state }}>
         <Router>
           <Switch>
+            <Route exact path="/sign-up" component={SignUp} />
             <Route exact path="/" component={Home} />
             <Route exact path="/about" component={About} />
             <Route exact path="/view-buildings" component={ViewBuildings} />
