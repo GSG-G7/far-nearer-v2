@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const { join } = require('path');
 const cookieParser = require('cookie-parser');
@@ -7,7 +8,7 @@ const formData = require('express-form-data');
 const helmet = require('helmet');
 
 const controllers = require('./controllers');
-const errorHandle = require('./controllers/middleware');
+const { errorHandle } = require('./controllers/middleware');
 const sendUpdateEmails = require('./controllers/mailList/sendUpdateEmails');
 
 const app = express();

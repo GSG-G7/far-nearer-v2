@@ -1,6 +1,5 @@
 const { readFileSync } = require('fs');
 const { join } = require('path');
-require('dotenv').config();
 const nodemailer = require('nodemailer');
 
 const sendEmail = async email => {
