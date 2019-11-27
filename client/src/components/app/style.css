@@ -15,6 +15,10 @@
   font-family: 'Nexa';
 }
 
+body {
+  height: auto;
+}
+
 html {
   font-size: 1vw;
 }
@@ -81,6 +85,10 @@ a:hover {
 .err-controller ~ .footer2 {
   display: none;
 }
+.signUp-controller ~ .footer2 {
+  display: none;
+}
+
 
 @media (max-width: 600px) {
   .ant-table {
