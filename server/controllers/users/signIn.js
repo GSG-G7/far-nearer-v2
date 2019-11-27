@@ -12,13 +12,11 @@ module.exports = async (req, res, next) => {
     const { email, password } = await signInSchema.validate(req.body, {
       abortEarly: false,
     });
-    const users = await getUsers();
+
+    const users = await getUsers(email);
     const isExist = users.find(async user => {
-      if (email === user.email) {
-        const correctPassword = await compare(password, user.password);
-        return correctPassword;
-      }
-      return false;
+      const correctPassword = await compare(password, user.password);
+      return correctPassword;
     });
     if (isExist) {
       const token = sign({ userInfo: isExist.id }, key);
