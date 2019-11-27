@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import logoImageLight from 'assets/FNLogoLightV2.png';
 import logoImageDark from 'assets/FNLogodarkV2.png';
-import { Button } from 'antd';
+// import { Button } from 'antd';
 import styles from './navbar.module.css';
 import SlideMenu from '../SlideMenu';
 
