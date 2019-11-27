@@ -138,8 +138,13 @@ const MapComponent = ({ buildingInfo, view }) => {
 };
 
 MapComponent.propTypes = {
-  buildingInfo: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
-  view: PropTypes.string.isRequired,
+  buildingInfo: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
+  view: PropTypes.string,
+};
+
+MapComponent.defaultProps = {
+  buildingInfo: [],
+  view: '',
 };
 
 export default MapComponent;

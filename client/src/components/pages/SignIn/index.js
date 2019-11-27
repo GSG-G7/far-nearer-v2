@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Form, Icon, Input, Button } from 'antd';
+import axios from 'axios';
+import { Form, Icon, Input, Button, notification } from 'antd';
 
 import { Navbar } from 'components/utils';
 import styles from './signIn.module.css';
@@ -9,12 +10,38 @@ import styles from './signIn.module.css';
 class SignInForm extends Component {
   handleSubmit = e => {
     const {
+      history: { push },
+    } = this.props;
+
+    const {
       form: { validateFields },
     } = this.props;
     e.preventDefault();
-    validateFields((err, values) => {
+    validateFields(async (err, values) => {
+      const openNotificationWithIcon = (type, message) => {
+        notification[type]({
+          message,
+          duration: 2,
+        });
+      };
       if (!err) {
-        // console.log('Received values of form: ', values);
+        try {
+          const { data } = await axios.post('/api/v1/sign-in', values);
+          if (data.statusCode === 200) {
+            // /// here still work to have auth
+            push('/view-buildings');
+          } else if (data.statusCode === 401) {
+            openNotificationWithIcon(
+              'info',
+              'Invalid Credintials! Please try again',
+            );
+          }
+        } catch (error) {
+          openNotificationWithIcon(
+            'error',
+            'Something went wrong! Please try again',
+          );
+        }
       }
     });
   };
@@ -69,11 +96,12 @@ class SignInForm extends Component {
                   <Button
                     type="primary"
                     htmlType="submit"
+                    onClick={this.handleSubmit}
                     className="login-form-button"
                     size="large"
                     block
                   >
-                    <Link to="/view-buildings">Log in</Link>
+                    Log in
                   </Button>
                   <Link to="/sign-up">register now!</Link>
                 </Form.Item>
@@ -88,6 +116,7 @@ class SignInForm extends Component {
 
 SignInForm.propTypes = {
   form: PropTypes.objectOf(PropTypes.any).isRequired,
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 const SignIn = Form.create({ name: 'validate_other' })(SignInForm);

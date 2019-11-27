@@ -101,7 +101,12 @@ class TableInfo extends Component {
 }
 
 TableInfo.propTypes = {
-  buildingInfo: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  buildingInfo: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
   redirect: PropTypes.func.isRequired,
 };
+
+TableInfo.defaultProps = {
+  buildingInfo: [],
+};
+
 export default TableInfo;
