@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import logoImageLight from 'assets/FNLogoLightV2.png';
 import logoImageDark from 'assets/FNLogodarkV2.png';
+import { Button } from 'antd';
 import styles from './navbar.module.css';
 import SlideMenu from '../SlideMenu';
 
@@ -178,6 +179,11 @@ class Navbar extends Component {
                         View Buildings
                       </NavLink>
                     </li>
+                    {/* <li className={styles['list--item']}>
+                      <NavLink to="/sign-in">
+                        <Button>Login</Button>
+                      </NavLink>
+                    </li> */}
                   </ul>
                 </div>
               )}

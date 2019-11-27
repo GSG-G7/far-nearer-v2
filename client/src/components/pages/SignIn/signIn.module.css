@@ -1,10 +1,19 @@
+.container {
+  background: url(https://imgur.com/IYpb0Gv.png);
+  background-size: 100%;
+  margin: auto 15%;
+  box-shadow: 5px 5px 4px #999999c2;
+}
+
 .signin {
-  margin: 15% 30%;
+  padding: 3rem 0;
+  margin: 10% 30%;
 }
 
 .heading {
   text-align: center;
   font-family: 'Nexa bold';
+  color: var(--main-color-light);
 }
 
 .signin__button {
@@ -12,7 +21,17 @@
 }
 
 @media (max-width: 600px) {
+  .container {
+    background: none;
+    box-shadow: none;
+    outline: none;
+  }
+
   .signin {
     margin: 45% 10%;
+  }
+
+  .logo {
+    width: 50vw;
   }
 }
