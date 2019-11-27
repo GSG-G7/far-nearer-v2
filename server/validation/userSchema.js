@@ -1,10 +1,6 @@
 const yup = require('yup');
 
 exports.signUpSchema = yup.object({
-  email: yup
-    .string()
-    .email()
-    .required(),
   username: yup.string().required(),
   password: yup
     .string()
@@ -14,4 +10,12 @@ exports.signUpSchema = yup.object({
     .string()
     .required()
     .oneOf([yup.ref('password'), null], 'Passwords must match '),
+});
+
+exports.signInSchema = yup.object({
+  email: yup
+    .string()
+    .email()
+    .required(),
+  password: yup.string().required(),
 });
