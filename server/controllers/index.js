@@ -15,7 +15,7 @@ router.post('/sign-in', signIn);
 router.get('/mailList', mailList);
 router.post('/report-building', postEmptyBuilding);
 
-// router.use(auth);
+router.use(auth);
 router.get('/empty-buildings', getEmptyBuildings);
 router.get('/empty-buildings/:id', getBuilding);
 
