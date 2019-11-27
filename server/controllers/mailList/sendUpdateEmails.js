@@ -1,6 +1,5 @@
 const { readFileSync } = require('fs');
 const { join } = require('path');
-require('dotenv').config();
 const cron = require('node-cron');
 const nodemailer = require('nodemailer');
 const log = require('simple-node-logger').createSimpleFileLogger('error.log');

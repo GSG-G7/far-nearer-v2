@@ -17,7 +17,7 @@ module.exports = async (req, res, next) => {
     if (user) {
       const correctPassword = await compare(password, user.password);
       if (correctPassword) {
-        const token = sign({ userInfo: user.id }, key);
+        const token = sign({ userId: user.id }, key);
         res.cookie('token', token, { maxAge: 8400000, httpOnly: true });
         res.json({ statusCode: 200 });
       } else {
