@@ -61,3 +61,8 @@ exports.get = async () => {
     .eachPage(process);
   return camelcaseKeys(allRecords);
 };
+
+exports.getBuilding = async id => {
+  const building = await base('empty_buildings').find(id);
+  return camelcaseKeys(building.fields);
+};

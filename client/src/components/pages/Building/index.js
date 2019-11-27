@@ -13,12 +13,19 @@ const Building = props => {
       params: { id },
     },
     history: { push },
+    getBuilding,
   } = props;
 
   return (
     <buildingContext.Consumer>
       {context => {
-        const { buildingInfo, loading } = context;
+        const { buildingInfo, loading, currentBuilding } = context;
+
+        if (!buildingInfo && !currentBuilding) {
+          getBuilding(id);
+          return <Loading />;
+        }
+
         if (loading) {
           return (
             <div>
@@ -27,9 +34,13 @@ const Building = props => {
             </div>
           );
         }
-        const found = buildingInfo.find(building => {
-          return id === building.id;
-        });
+
+        const found = buildingInfo
+          ? buildingInfo.find(building => {
+              return id === building.id;
+            })
+          : currentBuilding;
+
         const buildingArray = [];
         buildingArray[0] = found;
         if (found) {
@@ -117,6 +128,7 @@ Building.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  getBuilding: PropTypes.func.isRequired,
 };
 
 export default Building;

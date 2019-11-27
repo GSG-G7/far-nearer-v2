@@ -18,11 +18,12 @@ import buildingContext from 'contexts/buildingContext';
 
 class App extends Component {
   state = {
-    buildingInfo: [],
+    buildingInfo: null,
     loading: true,
+    currentBuilding: null,
   };
 
-  async componentDidMount() {
+  getBuilding = async id => {
     const openNotificationWithIcon = (type, message) => {
       notification[type]({
         message,
@@ -32,18 +33,19 @@ class App extends Component {
     try {
       const {
         data: { data },
-      } = await axios.get('/api/v1/empty-buildings');
-
-      if (data && data[0] && data[0].latitude && data[0].longitude)
-        this.setState({ buildingInfo: data, loading: false });
-      else this.setState({ loading: false });
+      } = await axios.get(`/api/v1/empty-buildings/${id}`);
+      this.setState({ currentBuilding: data, loading: false });
     } catch (err) {
       openNotificationWithIcon(
         'error',
         'Something went wrong! Please try again',
       );
     }
-  }
+  };
+
+  updateState = data => {
+    this.setState(data);
+  };
 
   render() {
     return (
@@ -53,8 +55,20 @@ class App extends Component {
             <Route exact path="/sign-in" component={SignIn} />
             <Route exact path="/" component={Home} />
             <Route exact path="/about" component={About} />
-            <Route exact path="/view-buildings" component={ViewBuildings} />
-            <Route exact path="/view-buildings/:id" component={Building} />
+            <Route
+              exact
+              path="/view-buildings"
+              render={props => (
+                <ViewBuildings {...props} updateState={this.updateState} />
+              )}
+            />
+            <Route
+              exact
+              path="/view-buildings/:id"
+              render={props => (
+                <Building {...props} getBuilding={this.getBuilding} />
+              )}
+            />
             <Route component={Error} />
           </Switch>
           <Footer />

@@ -132,7 +132,7 @@ const MapComponent = ({ buildingInfo, view }) => {
         id="mapbox.streets"
         accessToken="pk.eyJ1IjoiZmFkeW1hemVuIiwiYSI6ImNrMXRxY3JjZDBpMGYzbXF5YmV0c2g5a24ifQ.C6ZZQF61IMwDVQmu7Xxpzg"
       />
-      {buildingInfo.length ? buildMarkers(buildingInfo) : null}
+      {buildingInfo && buildingInfo.length ? buildMarkers(buildingInfo) : null}
     </Map>
   );
 };
