@@ -21,9 +21,9 @@ module.exports = async (req, res, next) => {
       return false;
     });
     if (isExist) {
-      const token = sign({ userInfo: { email, password } }, key);
+      const token = sign({ userInfo: isExist.id }, key);
       res.cookie('token', token, { maxAge: 8400000, httpOnly: true });
-      res.json({ data: users, statusCode: 200 });
+      res.json({ statusCode: 200 });
     } else {
       res.send({
         statusCode: 400,

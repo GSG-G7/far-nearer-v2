@@ -7,8 +7,8 @@ exports.getUsers = async () => {
     records = [
       ...records,
       ...partialRecords.map(record => ({
-        email: record.fields.email,
-        password: record.fields.password,
+        id: record.id,
+        ...record.fields,
       })),
     ];
     fetchNextPage();
