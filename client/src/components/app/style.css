@@ -53,6 +53,10 @@ html {
   box-shadow: 0.1rem 0.1rem var(--main-black--hover);
 }
 
+a {
+  color: var(--main-color--light);
+}
+
 .leaflet-popup-content {
   margin: 0;
   padding: 0.5rem;
@@ -85,6 +89,10 @@ a:hover {
 .signinBtn:hover {
   color: var(--main-white);
 }
+.form__button:hover {
+  color: var(--main-white);
+}
+
 .err-controller ~ .footer2 {
   display: none;
 }
@@ -92,6 +100,9 @@ a:hover {
   display: none;
 }
 
+.signIn-controller ~ .footer2 {
+  display: none;
+}
 
 @media (max-width: 600px) {
   .ant-table {

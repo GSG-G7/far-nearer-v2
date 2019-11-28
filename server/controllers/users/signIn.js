@@ -17,7 +17,7 @@ module.exports = async (req, res, next) => {
       if (correctPassword) {
         const token = sign({ userId: user.id }, key);
         res.cookie('token', token, { maxAge: 8400000, httpOnly: true });
-        res.send({ statusCode: 200 });
+        res.send({ data: req.body, statusCode: 200 });
       } else {
         res.status(401).send({ statusCode: 401, error: 'Invalid Credintials' });
       }
