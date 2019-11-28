@@ -1,7 +1,7 @@
 const { sign } = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-const { postUsers, getUserByEmail } = require('../../models/queries/users');
+const { postUsers, getUserByEmail } = require('../../models/queries/');
 const { signUpSchema } = require('../../validation/userSchema');
 
 module.exports = async (req, res, next) => {
@@ -21,8 +21,7 @@ module.exports = async (req, res, next) => {
     } else {
       const salt = await bcrypt.genSalt(12);
       const hashPassword = await bcrypt.hash(userPassword, salt);
-      const addUser = await postUsers({ email, hashPassword, username });
-      const [{ id }] = addUser;
+      const [{ id }] = await postUsers({ email, hashPassword, username });
       const token = sign({ userId: id }, key);
       res.cookie('token', token, { maxAge: 8400000, httpOnly: true });
       res.status(201).send({
