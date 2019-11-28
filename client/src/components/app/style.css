@@ -86,11 +86,15 @@ a:hover {
   color: var(--main-color--dark);
 }
 
+
 .form__button:hover {
   color: var(--main-white);
 }
 
 .err-controller ~ .footer2 {
+  display: none;
+}
+.signUp-controller ~ .footer2 {
   display: none;
 }
 
