@@ -71,10 +71,23 @@ class App extends Component {
     this.setState(data);
   };
 
+  logout = async () => {
+    try {
+      const { data } = await axios.get('/api/v1/logout');
+      if (data.statusCode === 200) {
+        this.setState({ isAuth: false });
+      } else {
+        this.setState({ isAuth: true });
+      }
+    } catch (error) {
+      this.setState({ isAuth: true });
+    }
+  };
+
   render() {
     const { isAuth } = this.state;
     return (
-      <buildingContext.Provider value={{ ...this.state }}>
+      <buildingContext.Provider value={{ ...this.state, logout: this.logout }}>
         <Router>
           <Switch>
             <Route
