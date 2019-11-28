@@ -29,6 +29,19 @@ class App extends Component {
     isAuth: false,
   };
 
+  async componentDidMount() {
+    try {
+      const { data } = await axios.get('api/v1/is-auth');
+      if (data.statusCode === 200) {
+        this.setState({ isAuth: true });
+      } else {
+        this.setState({ isAuth: false });
+      }
+    } catch (error) {
+      this.setState({ isAuth: false });
+    }
+  }
+
   getBuilding = async id => {
     const openNotificationWithIcon = (type, message) => {
       notification[type]({
