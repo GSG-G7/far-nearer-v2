@@ -17,7 +17,6 @@ module.exports = async (req, res, next) => {
       res.send({
         statusCode: 409,
         message: 'Email already exists',
-        data: { email },
       });
     } else {
       const salt = await bcrypt.genSalt(10);
