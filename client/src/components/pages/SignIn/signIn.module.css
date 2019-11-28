@@ -1,37 +1,52 @@
-.container {
-  background: url(https://imgur.com/IYpb0Gv.png);
-  background-size: 100%;
-  margin: auto 15%;
-  box-shadow: 5px 5px 4px #999999c2;
+.signIn {
+  display: flex;
+  justify-content: space-around;
+}
+.logoSection {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('https://imgur.com/Pi6j1NV.jpg');
+  background-size: cover;
+  background-position: center;
+  width: 60%;
+  height: 100vh;
 }
 
-.signin {
-  padding: 3rem 0;
-  margin: 10% 30%;
+.logo__layout {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.logo {
+  width: 50%;
+  height: auto;
+}
+
+.formSection {
+  width: 30%;
+  margin: 10% auto auto;
 }
 
 .heading {
   text-align: center;
-  font-family: 'Nexa bold';
-  color: var(--main-color-light);
-}
-
-.signin__button {
-  text-align: center;
+  color: var(--main-color--light);
+  font-weight: bold;
 }
 
 @media (max-width: 600px) {
-  .container {
-    background: none;
-    box-shadow: none;
-    outline: none;
+  .signIn {
+    margin: 23% 10%;
   }
 
-  .signin {
-    margin: 45% 10%;
+  .formSection {
+    margin: 20% auto auto;
+    width: 100%;
   }
 
-  .logo {
-    width: 50vw;
+  .logoSection {
+    display: none;
+  }
+
+  .heading {
+    margin-bottom: 10rem;
   }
 }

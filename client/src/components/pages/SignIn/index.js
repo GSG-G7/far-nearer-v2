@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Form, Icon, Input, Button, notification } from 'antd';
 
-import { Navbar } from 'components/utils';
+import logo from 'assets/FNLogodarkV2.png';
 import styles from './signIn.module.css';
 
 class SignInForm extends Component {
@@ -50,10 +50,13 @@ class SignInForm extends Component {
       form: { getFieldDecorator },
     } = this.props;
     return (
-      <div className=" signIn-controller">
-        <Navbar />
-        <div className={`${styles.container}`}>
-          <div className={styles.signin}>
+      <div className="signIn-controller">
+        <div className={styles.signIn}>
+          <div className={styles.logoSection} />
+          <div className={styles.formSection}>
+            <div className={styles.logo__layout}>
+              <img src={logo} alt="logo" className={styles.logo} />
+            </div>
             <h1 className={styles.heading}>Welcome Back!!</h1>
             <Form onSubmit={this.handleSubmit} className="login-form">
               <Form.Item label="Email">
