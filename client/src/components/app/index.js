@@ -20,6 +20,7 @@ import Building from 'components/pages/Building';
 import SignIn from 'components/pages/SignIn';
 
 import buildingContext from 'contexts/buildingContext';
+import SignUp from 'components/pages/SignUp';
 
 class App extends Component {
   state = {
@@ -77,6 +78,17 @@ class App extends Component {
       <buildingContext.Provider value={{ ...this.state }}>
         <Router>
           <Switch>
+            <Route
+              exact
+              path="/sign-up"
+              render={props =>
+                isAuth ? (
+                  <Redirect to="/" />
+                ) : (
+                  <SignUp {...props} updateAuth={this.updateAuth} />
+                )
+              }
+            />
             <Route
               exact
               path="/sign-in"

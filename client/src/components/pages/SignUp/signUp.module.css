@@ -1,0 +1,73 @@
+.signUp {
+  display: flex;
+  justify-content: space-between;
+}
+.logoSection {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  url('https://imgur.com/Pi6j1NV.jpg');
+  background-size: cover;
+  background-position: center;
+  width: 60%;
+  height: 100vh;
+}
+.formSection {
+  width: 30%;
+  margin: 3rem auto;  
+}
+
+.logo__layout{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.logo {
+  width: 30%;
+}
+
+.heading {
+  text-align: center;
+  color: var(--main-color--light);
+  font-weight: bold;
+  margin-top: 2rem;
+}
+.signUpBtn {
+  text-align: center;
+}
+.hasAccount {
+  text-align: center;
+  color: var(--main-black);
+  font-family: 'roboto';
+}
+.signin {
+  display: inline;
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+  color: var(--main-color--light);
+}
+
+@media (max-width: 600px) {
+  .signUp {
+    margin: 23% 10%;
+  }
+
+  .formSection {
+     margin: 0;
+     width: 100%;
+  }
+
+  .logoSection {
+    display: none;
+  }
+
+  .logo {
+    margin: -30% auto auto;
+  }
+  .heading {
+    margin-bottom: 10rem;
+  }
+
+  .signin {
+    font-size: 4rem;
+    margin-left: 1rem;
+  }
+}
