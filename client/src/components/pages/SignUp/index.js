@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Form, Input, Tooltip, Icon, Button } from 'antd';
+import axios from 'axios';
+import { Form, Input, Tooltip, Icon, Button, notification } from 'antd';
 
 import logo from 'assets/FNLogodarkV2.png';
 import styles from './signUp.module.css';
@@ -15,8 +16,32 @@ class SignUp extends Component {
     e.preventDefault();
     const {
       form: { validateFieldsAndScroll },
+      history: { push },
     } = this.props;
-    validateFieldsAndScroll(async (err, values) => {});
+
+    validateFieldsAndScroll(async (err, values) => {
+      const openNotificationWithIcon = (type, message) => {
+        notification[type]({
+          message,
+          duration: 2,
+        });
+      };
+      if (!err) {
+        try {
+          const { data } = await axios.post('/api/v1/sign-up', values);
+          if (data.statusCode === 201) {
+            push('/view-buildings');
+          } else if (data.statusCode === 409) {
+            openNotificationWithIcon('info', 'Email already exists');
+          }
+        } catch (error) {
+          openNotificationWithIcon(
+            'error',
+            'Something went wrong! Please try again',
+          );
+        }
+      }
+    });
   };
 
   handleConfirmBlur = e => {
@@ -89,7 +114,7 @@ class SignUp extends Component {
                 })(<Input.Password />)}
               </Form.Item>
               <Form.Item label="Confirm Password" hasFeedback>
-                {getFieldDecorator('confirm', {
+                {getFieldDecorator('confirmPassword', {
                   rules: [
                     {
                       required: true,
@@ -111,7 +136,7 @@ class SignUp extends Component {
                   </span>
                 }
               >
-                {getFieldDecorator('nickname', {
+                {getFieldDecorator('username', {
                   rules: [
                     {
                       required: true,
@@ -144,6 +169,7 @@ class SignUp extends Component {
 
 SignUp.propTypes = {
   form: PropTypes.objectOf(PropTypes.any).isRequired,
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 const WrappedSignUp = Form.create({ name: 'SignUp' })(SignUp);

@@ -1,6 +1,10 @@
 const yup = require('yup');
 
 exports.signUpSchema = yup.object({
+  email: yup
+    .string()
+    .email()
+    .required(),
   username: yup.string().required(),
   password: yup
     .string()

@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 import axios from 'axios';
 import { notification } from 'antd';
 
@@ -51,6 +56,17 @@ class App extends Component {
         <Router>
           <Switch>
             <Route exact path="/sign-up" component={SignUp} />
+            {/* <Route
+              exact
+              path="/sign-up"
+              render={props =>
+                isAuth ? (
+                  <Redirect to="/" />
+                ) : (
+                  <SignUp {...props} updateAuth={this.updateAuth} />
+                )
+              }
+            /> */}
             <Route exact path="/" component={Home} />
             <Route exact path="/about" component={About} />
             <Route exact path="/view-buildings" component={ViewBuildings} />
