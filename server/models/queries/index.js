@@ -1,10 +1,11 @@
 const { get: getEmptyBuildings, getBuilding } = require('./emptyBuildings');
+const { postUsers, getUserByEmail } = require('./users');
 const mailList = require('./mailList');
-const users = require('./users');
 
 module.exports = {
   getEmptyBuildings,
   getBuilding,
+  postUsers,
+  getUserByEmail,
   mailList,
-  users,
 };

@@ -1,8 +1,6 @@
 const { compare } = require('bcrypt');
 const { sign } = require('jsonwebtoken');
-const {
-  users: { getUserByEmail },
-} = require('../../models/queries');
+const { getUserByEmail } = require('../../models/queries');
 
 const { signInSchema } = require('../../validation/');
 
