@@ -8,7 +8,7 @@ const {
   getBuilding,
 } = require('./emptyBuildings');
 const mailList = require('./mailList');
-const { signIn } = require('./users');
+const { signIn, logout } = require('./users');
 
 router.post('/sign-in', signIn);
 
@@ -18,5 +18,6 @@ router.post('/report-building', postEmptyBuilding);
 router.use(auth);
 router.get('/empty-buildings', getEmptyBuildings);
 router.get('/empty-buildings/:id', getBuilding);
+router.get('/logout', logout);
 
 module.exports = router;
