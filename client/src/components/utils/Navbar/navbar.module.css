@@ -103,6 +103,20 @@
   display: none;
 }
 
+.navbar__button {
+  margin-top: 1.7rem;
+  background: var(--main-color--light);
+  border: var(--main-color--light);
+  outline: none;
+  color: var(--main-white);
+}
+
+.navbar__button:focus {
+  background: var(--main-color--light);
+  border: var(--main-color--light);
+  color: var(--main-white);
+}
+
 @media (max-width: 600px) {
   .menu {
     width: 50vw;

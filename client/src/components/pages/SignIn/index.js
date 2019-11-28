@@ -55,7 +55,9 @@ class SignInForm extends Component {
           <div className={styles.logoSection} />
           <div className={styles.formSection}>
             <div className={styles.logo__layout}>
-              <img src={logo} alt="logo" className={styles.logo} />
+              <Link to="/">
+                <img src={logo} alt="logo" className={styles.logo} />
+              </Link>
               <Link to="/sign-up">
                 <Button className="form__button">Sign up</Button>
               </Link>
