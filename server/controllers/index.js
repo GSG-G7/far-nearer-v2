@@ -13,6 +13,6 @@ router.post('/report-building', postEmptyBuilding);
 
 router.use(auth);
 router.get('/empty-buildings', getEmptyBuildings);
-router.post('/logout', logout);
+router.get('/logout', logout);
 
 module.exports = router;
