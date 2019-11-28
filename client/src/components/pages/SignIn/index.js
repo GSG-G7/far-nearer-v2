@@ -56,6 +56,9 @@ class SignInForm extends Component {
           <div className={styles.formSection}>
             <div className={styles.logo__layout}>
               <img src={logo} alt="logo" className={styles.logo} />
+              <Button>
+                <Link to="/sign-up">Sign up</Link>
+              </Button>
             </div>
             <h1 className={styles.heading}>Welcome Back!!</h1>
             <Form onSubmit={this.handleSubmit} className="login-form">

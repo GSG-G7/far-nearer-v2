@@ -67,9 +67,13 @@ class App extends Component {
             <Route
               exact
               path="/sign-in"
-              render={props => (
-                <SignIn {...props} updateAuth={this.updateAuth} />
-              )}
+              render={props =>
+                isAuth ? (
+                  <Redirect to="/" />
+                ) : (
+                  <SignIn {...props} updateAuth={this.updateAuth} />
+                )
+              }
             />
             <Route exact path="/" component={Home} />
             <Route exact path="/about" component={About} />
