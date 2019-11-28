@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Form, Input, Tooltip, Icon, Button } from 'antd';
 
-import { Navbar } from 'components/utils';
+import logo from 'assets/FNLogodarkV2.png';
 import styles from './signUp.module.css';
 
 class SignUp extends Component {
@@ -50,10 +50,15 @@ class SignUp extends Component {
     } = this.props;
     return (
       <div className={`${styles.signUpPage} signUp-controller`}>
-        <Navbar />
-        <div className={`${styles.signUp} signUp-controller`}>
+        <div className={styles.signUp}>
           <div className={styles.logoSection} />
           <div className={styles.formSection}>
+            <div className={styles.logo__layout}>
+              <img src={logo} alt="logo" className={styles.logo} />
+              <Link to="/sign-in">
+                <Button className="form__button">Sign in</Button>
+              </Link>
+            </div>
             <h1 className={styles.heading}>Create Your Account</h1>
             <Form onSubmit={this.handleSubmit}>
               <Form.Item label="E-mail">

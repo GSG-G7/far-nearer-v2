@@ -82,6 +82,9 @@ a:hover {
   color: var(--main-color--dark);
 }
 
+.signinBtn:hover {
+  color: var(--main-white);
+}
 .err-controller ~ .footer2 {
   display: none;
 }

@@ -1,29 +1,39 @@
 .signUp {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
-.logoSection{
-  margin-top: 1rem;
+.logoSection {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-  url('https://imgur.com/N2rrCNF.jpg');
+  url('https://imgur.com/Pi6j1NV.jpg');
   background-size: cover;
   background-position: center;
   width: 60%;
+  height: 100vh;
 }
-.formSection{
+.formSection {
   width: 30%;
-  margin: 2rem;  
+  margin: 3rem auto;  
+}
+
+.logo__layout{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.logo {
+  width: 30%;
 }
 
 .heading {
   text-align: center;
   color: var(--main-color--light);
   font-weight: bold;
+  margin-top: 2rem;
 }
-.signUpBtn{
+.signUpBtn {
   text-align: center;
 }
-.hasAccount{
+.hasAccount {
   text-align: center;
   color: var(--main-black);
   font-family: 'roboto';
@@ -37,14 +47,26 @@
 
 @media (max-width: 600px) {
   .signUp {
-    margin: 20% 10%;
+    margin: 23% 10%;
   }
-  
+
+  .formSection {
+     margin: 0;
+     width: 100%;
+  }
+
+  .logoSection {
+    display: none;
+  }
+
+  .logo {
+    margin: -30% auto auto;
+  }
   .heading {
     margin-bottom: 10rem;
   }
 
-  .signin{
+  .signin {
     font-size: 4rem;
     margin-left: 1rem;
   }
