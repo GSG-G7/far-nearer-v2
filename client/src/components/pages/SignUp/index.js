@@ -17,11 +17,7 @@ class SignUp extends Component {
     const {
       form: { validateFieldsAndScroll },
     } = this.props;
-    validateFieldsAndScroll(async (err, values) => {
-      if (!err) {
-        // const vlaues = axios.post('/api/v1/sign-up');
-      }
-    });
+    validateFieldsAndScroll(async (err, values) => {});
   };
 
   handleConfirmBlur = e => {
