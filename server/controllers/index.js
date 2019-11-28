@@ -4,7 +4,7 @@ const { auth } = require('./middleware/auth');
 
 const { getEmptyBuildings, postEmptyBuilding } = require('./emptyBuildings');
 const mailList = require('./mailList');
-const { signIn } = require('./users');
+const { signIn, logout } = require('./users');
 
 router.post('/sign-in', signIn);
 
@@ -13,5 +13,6 @@ router.post('/report-building', postEmptyBuilding);
 
 router.use(auth);
 router.get('/empty-buildings', getEmptyBuildings);
+router.post('/logout', logout);
 
 module.exports = router;
