@@ -15,6 +15,10 @@
   font-family: 'Nexa';
 }
 
+body {
+  height: auto;
+}
+
 html {
   font-size: 1vw;
 }
@@ -49,6 +53,10 @@ html {
   box-shadow: 0.1rem 0.1rem var(--main-black--hover);
 }
 
+a {
+  color: var(--main-color--light);
+}
+
 .leaflet-popup-content {
   margin: 0;
   padding: 0.5rem;
@@ -78,7 +86,15 @@ a:hover {
   color: var(--main-color--dark);
 }
 
+.form__button:hover {
+  color: var(--main-white);
+}
+
 .err-controller ~ .footer2 {
+  display: none;
+}
+
+.signIn-controller ~ .footer2 {
   display: none;
 }
 
