@@ -81,7 +81,9 @@ class SignUp extends Component {
           <div className={styles.logoSection} />
           <div className={styles.formSection}>
             <div className={styles.logo__layout}>
-              <img src={logo} alt="logo" className={styles.logo} />
+              <Link to="/">
+                <img src={logo} alt="logo" className={styles.logo} />
+              </Link>
               <Link to="/sign-in">
                 <Button className="form__button">Sign in</Button>
               </Link>
