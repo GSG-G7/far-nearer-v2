@@ -19,7 +19,7 @@ module.exports = async (req, res, next) => {
         message: 'Email already exists',
       });
     } else {
-      const salt = await bcrypt.genSalt(10);
+      const salt = await bcrypt.genSalt(12);
       const hashPassword = await bcrypt.hash(userPassword, salt);
       const addUser = await postUsers({ email, hashPassword, username });
       const [{ id }] = addUser;
