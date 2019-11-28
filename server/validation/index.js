@@ -1,5 +1,5 @@
 const validateEmail = require('./validateEmail');
 const buildingSchema = require('./buildingSchema');
-const { signInSchema } = require('./userSchema');
+const { signUpSchema, signInSchema } = require('./userSchema');
 
-module.exports = { validateEmail, buildingSchema, signInSchema };
+module.exports = { validateEmail, buildingSchema, signUpSchema, signInSchema };
