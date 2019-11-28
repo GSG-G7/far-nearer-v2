@@ -78,7 +78,17 @@ class App extends Component {
       <buildingContext.Provider value={{ ...this.state }}>
         <Router>
           <Switch>
-            <Route exact path="/sign-up" component={SignUp} />
+            <Route
+              exact
+              path="/sign-up"
+              render={props =>
+                isAuth ? (
+                  <Redirect to="/" />
+                ) : (
+                  <SignUp {...props} updateAuth={this.updateAuth} />
+                )
+              }
+            />
             <Route
               exact
               path="/sign-in"

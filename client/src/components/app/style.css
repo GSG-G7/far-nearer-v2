@@ -86,23 +86,17 @@ a:hover {
   color: var(--main-color--dark);
 }
 
-<<<<<<< HEAD
-.signinBtn:hover {
-  color: var(--main-white);
-}
-=======
+
 .form__button:hover {
   color: var(--main-white);
 }
 
->>>>>>> 6cd6d142e7517921e5a69565183273c834b62760
 .err-controller ~ .footer2 {
   display: none;
 }
 .signUp-controller ~ .footer2 {
   display: none;
 }
-
 
 .signIn-controller ~ .footer2 {
   display: none;

@@ -17,6 +17,7 @@ class SignUp extends Component {
     const {
       form: { validateFieldsAndScroll },
       history: { push },
+      updateAuth,
     } = this.props;
 
     validateFieldsAndScroll(async (err, values) => {
@@ -30,6 +31,7 @@ class SignUp extends Component {
         try {
           const { data } = await axios.post('/api/v1/sign-up', values);
           if (data.statusCode === 201) {
+            updateAuth();
             push('/view-buildings');
           } else if (data.statusCode === 409) {
             openNotificationWithIcon('info', 'Email already exists');
@@ -170,6 +172,7 @@ class SignUp extends Component {
 SignUp.propTypes = {
   form: PropTypes.objectOf(PropTypes.any).isRequired,
   history: PropTypes.objectOf(PropTypes.any).isRequired,
+  updateAuth: PropTypes.func.isRequired,
 };
 
 const WrappedSignUp = Form.create({ name: 'SignUp' })(SignUp);
