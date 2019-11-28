@@ -13,7 +13,10 @@ exports.getEmails = async () => {
   };
 
   await base('mailing_list')
-    .select({ view: 'Grid view' })
+    .select({
+      view: 'Grid view',
+      filterByFormula: `NOT({email}='')`,
+    })
     .eachPage(processPage);
 
   return records;
