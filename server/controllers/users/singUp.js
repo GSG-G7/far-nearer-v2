@@ -8,19 +8,18 @@ module.exports = async (req, res, next) => {
   const key = process.env.KEY;
 
   try {
-    const { email: newEmail } = req.body;
-    const userExist = await getUserByEmail(newEmail);
+    const userInfo = await signUpSchema.validate(req.body, {
+      abortEarly: false,
+    });
+    const { email, password: userPassword, username } = userInfo;
+    const userExist = await getUserByEmail(email);
     if (userExist) {
       res.send({
-        statusCode: 200,
+        statusCode: 409,
         message: 'Email already exists',
-        data: { newEmail },
+        data: { email },
       });
     } else {
-      const userInfo = await signUpSchema.validate(req.body, {
-        abortEarly: false,
-      });
-      const { email, password: userPassword, username } = userInfo;
       const salt = await bcrypt.genSalt(10);
       const hashPassword = await bcrypt.hash(userPassword, salt);
       const addUser = await postUsers({ email, hashPassword, username });
