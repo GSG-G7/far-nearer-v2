@@ -10,12 +10,11 @@ import styles from './signIn.module.css';
 class SignInForm extends Component {
   handleSubmit = e => {
     const {
+      form: { validateFields },
       history: { push },
+      updateAuth,
     } = this.props;
 
-    const {
-      form: { validateFields },
-    } = this.props;
     e.preventDefault();
     validateFields(async (err, values) => {
       const openNotificationWithIcon = (type, message) => {
@@ -28,7 +27,7 @@ class SignInForm extends Component {
         try {
           const { data } = await axios.post('/api/v1/sign-in', values);
           if (data.statusCode === 200) {
-            // /// here still work to have auth
+            updateAuth();
             push('/view-buildings');
           } else if (data.statusCode === 401) {
             openNotificationWithIcon(
@@ -117,6 +116,7 @@ class SignInForm extends Component {
 SignInForm.propTypes = {
   form: PropTypes.objectOf(PropTypes.any).isRequired,
   history: PropTypes.objectOf(PropTypes.any).isRequired,
+  updateAuth: PropTypes.func.isRequired,
 };
 
 const SignIn = Form.create({ name: 'validate_other' })(SignInForm);

@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom';
 import axios from 'axios';
 import { notification } from 'antd';
 
@@ -21,26 +26,32 @@ class App extends Component {
     buildingInfo: null,
     loading: true,
     currentBuilding: null,
+    isAuth: false
   };
 
   getBuilding = async id => {
     const openNotificationWithIcon = (type, message) => {
       notification[type]({
         message,
-        duration: 2,
+        duration: 2
       });
     };
     try {
       const {
-        data: { data },
+        data: { data }
       } = await axios.get(`/api/v1/empty-buildings/${id}`);
       this.setState({ currentBuilding: data, loading: false });
     } catch (err) {
       openNotificationWithIcon(
         'error',
-        'Something went wrong! Please try again',
+        'Something went wrong! Please try again'
       );
     }
+  };
+
+  updateAuth = () => {
+    const { isAuth } = this.state;
+    this.setState({ isAuth: !isAuth });
   };
 
   updateState = data => {
@@ -48,27 +59,40 @@ class App extends Component {
   };
 
   render() {
+    const { isAuth } = this.state;
     return (
       <buildingContext.Provider value={{ ...this.state }}>
         <Router>
           <Switch>
-            <Route exact path="/sign-in" component={SignIn} />
+            <Route
+              exact
+              path="/sign-in"
+              render={props => (
+                <SignIn {...props} updateAuth={this.updateAuth} />
+              )}
+            />
             <Route exact path="/" component={Home} />
             <Route exact path="/about" component={About} />
-            <Route
-              exact
-              path="/view-buildings"
-              render={props => (
-                <ViewBuildings {...props} updateState={this.updateState} />
-              )}
-            />
-            <Route
-              exact
-              path="/view-buildings/:id"
-              render={props => (
-                <Building {...props} getBuilding={this.getBuilding} />
-              )}
-            />
+            {isAuth ? (
+              <>
+                <Route
+                  exact
+                  path="/view-buildings"
+                  render={props => (
+                    <ViewBuildings {...props} updateState={this.updateState} />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/view-buildings/:id"
+                  render={props => (
+                    <Building {...props} getBuilding={this.getBuilding} />
+                  )}
+                />
+              </>
+            ) : (
+              <Route render={() => <Redirect to="/sign-in" />} />
+            )}
             <Route component={Error} />
           </Switch>
           <Footer />
