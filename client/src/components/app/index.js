@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
+  Redirect,
 } from 'react-router-dom';
 import axios from 'axios';
 import { notification } from 'antd';
@@ -26,25 +26,25 @@ class App extends Component {
     buildingInfo: null,
     loading: true,
     currentBuilding: null,
-    isAuth: false
+    isAuth: false,
   };
 
   getBuilding = async id => {
     const openNotificationWithIcon = (type, message) => {
       notification[type]({
         message,
-        duration: 2
+        duration: 2,
       });
     };
     try {
       const {
-        data: { data }
+        data: { data },
       } = await axios.get(`/api/v1/empty-buildings/${id}`);
       this.setState({ currentBuilding: data, loading: false });
     } catch (err) {
       openNotificationWithIcon(
         'error',
-        'Something went wrong! Please try again'
+        'Something went wrong! Please try again',
       );
     }
   };

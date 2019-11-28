@@ -21,10 +21,10 @@ module.exports = async (req, res, next) => {
         res.cookie('token', token, { maxAge: 8400000, httpOnly: true });
         res.send({ data: req.body, statusCode: 200 });
       } else {
-        res.send({ statusCode: 401, error: 'Invalid Credintials' });
+        res.status(401).send({ statusCode: 401, error: 'Invalid Credintials' });
       }
     } else {
-      res.send({ statusCode: 401, error: 'Invalid Credintials' });
+      res.status(401).send({ statusCode: 401, error: 'Invalid Credintials' });
     }
   } catch (error) {
     if (error.name === 'ValidationError')
