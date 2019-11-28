@@ -57,7 +57,7 @@ exports.get = async () => {
   };
 
   await base('empty_buildings')
-    .select({ view: 'Grid view' })
+    .select({ view: 'Grid view', filterByFormula: `NOT({city}='')` })
     .eachPage(process);
   return camelcaseKeys(allRecords);
 };
