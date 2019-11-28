@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 import axios from 'axios';
 import { notification } from 'antd';
 
@@ -12,17 +17,33 @@ import Error from 'components/pages/Error';
 import ViewBuildings from 'components/pages/ViewBuildings';
 import Home from 'components/pages/Home';
 import Building from 'components/pages/Building';
+import SignIn from 'components/pages/SignIn';
 
 import buildingContext from 'contexts/buildingContext';
 import SignUp from 'components/pages/SignUp';
 
 class App extends Component {
   state = {
-    buildingInfo: [],
+    buildingInfo: null,
     loading: true,
+    currentBuilding: null,
+    isAuth: false,
   };
 
   async componentDidMount() {
+    try {
+      const { data } = await axios.get('api/v1/is-auth');
+      if (data.statusCode === 200) {
+        this.setState({ isAuth: true });
+      } else {
+        this.setState({ isAuth: false });
+      }
+    } catch (error) {
+      this.setState({ isAuth: false });
+    }
+  }
+
+  getBuilding = async id => {
     const openNotificationWithIcon = (type, message) => {
       notification[type]({
         message,
@@ -32,29 +53,65 @@ class App extends Component {
     try {
       const {
         data: { data },
-      } = await axios.get('/api/v1/empty-buildings');
-
-      if (data && data[0] && data[0].latitude && data[0].longitude)
-        this.setState({ buildingInfo: data, loading: false });
-      else this.setState({ loading: false });
+      } = await axios.get(`/api/v1/empty-buildings/${id}`);
+      this.setState({ currentBuilding: data, loading: false });
     } catch (err) {
       openNotificationWithIcon(
         'error',
         'Something went wrong! Please try again',
       );
     }
-  }
+  };
+
+  updateAuth = () => {
+    const { isAuth } = this.state;
+    this.setState({ isAuth: !isAuth });
+  };
+
+  updateState = data => {
+    this.setState(data);
+  };
 
   render() {
+    const { isAuth } = this.state;
     return (
       <buildingContext.Provider value={{ ...this.state }}>
         <Router>
           <Switch>
             <Route exact path="/sign-up" component={SignUp} />
+            <Route
+              exact
+              path="/sign-in"
+              render={props =>
+                isAuth ? (
+                  <Redirect to="/" />
+                ) : (
+                  <SignIn {...props} updateAuth={this.updateAuth} />
+                )
+              }
+            />
             <Route exact path="/" component={Home} />
             <Route exact path="/about" component={About} />
-            <Route exact path="/view-buildings" component={ViewBuildings} />
-            <Route exact path="/view-buildings/:id" component={Building} />
+            {isAuth ? (
+              <>
+                <Route
+                  exact
+                  path="/view-buildings"
+                  render={props => (
+                    <ViewBuildings {...props} updateState={this.updateState} />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/view-buildings/:id"
+                  render={props => (
+                    <Building {...props} getBuilding={this.getBuilding} />
+                  )}
+                />
+              </>
+            ) : (
+              <Route render={() => <Redirect to="/sign-in" />} />
+            )}
             <Route component={Error} />
           </Switch>
           <Footer />
