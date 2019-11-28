@@ -1,7 +1,7 @@
-const test = require('tape');
-const request = require('supertest');
+// const test = require('tape');
+// const request = require('supertest');
 
-const app = require('../../server/app');
+// const app = require('../../server/app');
 
 // test('Test empty building route | GET', t => {
 //   request(app)
