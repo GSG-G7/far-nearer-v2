@@ -71,7 +71,6 @@ class SignInForm extends Component {
                   ],
                 })(
                   <Input
-                    size="large"
                     prefix={
                       <Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />
                     }
@@ -89,7 +88,6 @@ class SignInForm extends Component {
                   ],
                 })(
                   <Input.Password
-                    size="large"
                     prefix={
                       <Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />
                     }
@@ -105,7 +103,6 @@ class SignInForm extends Component {
                     htmlType="submit"
                     onClick={this.handleSubmit}
                     className="login-form-button"
-                    size="large"
                     block
                   >
                     Log in
@@ -113,7 +110,7 @@ class SignInForm extends Component {
                   <span className={styles.signup__message}>
                     Don&apos;t have an account?{' '}
                   </span>
-                  <Link to="/sign-up">Regregister now!</Link>
+                  <Link to="/sign-up">Register now!</Link>
                 </Form.Item>
               </div>
             </Form>

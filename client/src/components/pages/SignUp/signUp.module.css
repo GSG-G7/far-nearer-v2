@@ -2,26 +2,31 @@
   display: flex;
   justify-content: space-between;
 }
+
 .logoSection {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-  url('https://imgur.com/Pi6j1NV.jpg');
+    url('https://imgur.com/Pi6j1NV.jpg');
   background-size: cover;
   background-position: center;
   width: 60%;
   height: 100vh;
 }
+
 .formSection {
   width: 30%;
-  margin: 3rem auto;  
+  margin: 2% auto;
 }
 
-.logo__layout{
+.logo__layout {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 9rem;
 }
+
 .logo {
   width: 30%;
+  height: auto;
 }
 
 .heading {
@@ -30,14 +35,17 @@
   font-weight: bold;
   margin-top: 2rem;
 }
+
 .signUpBtn {
   text-align: center;
 }
+
 .hasAccount {
   text-align: center;
   color: var(--main-black);
   font-family: 'roboto';
 }
+
 .signin {
   display: inline;
   font-size: 1.2rem;
@@ -51,8 +59,8 @@
   }
 
   .formSection {
-     margin: 0;
-     width: 100%;
+    margin: 0 auto auto;
+    width: 100%;
   }
 
   .logoSection {
@@ -62,6 +70,7 @@
   .logo {
     margin: -30% auto auto;
   }
+
   .heading {
     margin-bottom: 10rem;
   }
