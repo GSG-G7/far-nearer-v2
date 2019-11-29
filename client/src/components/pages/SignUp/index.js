@@ -76,7 +76,7 @@ class SignUp extends Component {
       form: { getFieldDecorator },
     } = this.props;
     return (
-      <div className={`${styles.signUpPage} signUp-controller`}>
+      <div className="signUp-controller">
         <div className={styles.signUp}>
           <div className={styles.logoSection} />
           <div className={styles.formSection}>
@@ -154,14 +154,12 @@ class SignUp extends Component {
                 <Button type="primary" htmlType="submit" block>
                   Sign Up
                 </Button>
-                <div className={styles.hasAccount}>
-                  <span>
-                    Already a member?
-                    <Link to="/sign-in">
-                      <h4 className={styles.signin}>Sign in</h4>
-                    </Link>
-                  </span>
-                </div>
+                <span className={styles.signin__message}>
+                  Already a member?
+                  <Link to="/sign-in" className={styles.signin}>
+                    Sign in
+                  </Link>
+                </span>
               </Form.Item>
             </Form>
           </div>
