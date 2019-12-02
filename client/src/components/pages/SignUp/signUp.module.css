@@ -1,6 +1,6 @@
 .signUp {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .logoSection {
@@ -14,18 +14,18 @@
 
 .formSection {
   width: 30%;
-  margin: 2% auto;
+  margin: 2% auto auto;
 }
 
 .logo__layout {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 9rem;
+  margin-bottom: 4rem;
 }
 
 .logo {
-  width: 30%;
+  width: 40%;
   height: auto;
 }
 
@@ -36,26 +36,18 @@
   margin-top: 2rem;
 }
 
-.signUpBtn {
-  text-align: center;
-}
-
-.hasAccount {
-  text-align: center;
-  color: var(--main-black);
-  font-family: 'roboto';
+.signin__message {
+  font-size: 1rem;
 }
 
 .signin {
-  display: inline;
-  font-size: 1.2rem;
   margin-left: 0.5rem;
   color: var(--main-color--light);
 }
 
 @media (max-width: 600px) {
   .signUp {
-    margin: 23% 10%;
+    margin: 5% 5%;
   }
 
   .formSection {
@@ -63,20 +55,19 @@
     width: 100%;
   }
 
-  .logoSection {
-    display: none;
+  .logo__layout {
+    margin-bottom: 10rem;
   }
 
-  .logo {
-    margin: -30% auto auto;
+  .logoSection {
+    display: none;
   }
 
   .heading {
     margin-bottom: 10rem;
   }
 
-  .signin {
-    font-size: 4rem;
-    margin-left: 1rem;
+  .signin__message {
+    font-size: 3rem;
   }
 }

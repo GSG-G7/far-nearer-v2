@@ -108,9 +108,11 @@ class SignInForm extends Component {
                     Log in
                   </Button>
                   <span className={styles.signup__message}>
-                    Don&apos;t have an account?{' '}
+                    Don&apos;t have an account?
+                    <Link to="/sign-up" className={styles.signup}>
+                      Register now
+                    </Link>
                   </span>
-                  <Link to="/sign-up">Register now!</Link>
                 </Form.Item>
               </div>
             </Form>

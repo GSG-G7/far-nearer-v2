@@ -20,7 +20,7 @@
 }
 
 .logo {
-  width: 30%;
+  width: 40%;
   height: auto;
 }
 
@@ -39,9 +39,14 @@
   font-size: 1rem;
 }
 
+.signup {
+  margin-left: 0.5rem;
+  color: var(--main-color--light);
+}
+
 @media (max-width: 600px) {
   .signIn {
-    margin: 23% 10%;
+    margin: 5% 5%;
   }
 
   .formSection {
@@ -54,7 +59,7 @@
   }
 
   .logo__layout {
-    margin-bottom: 30rem;
+    margin-bottom: 10rem;
   }
 
   .heading {
